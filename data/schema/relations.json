@@ -1,0 +1,10 @@
+{
+  "founded_by": {
+    "name": "創業者",
+    "definition": "組織を設立した人物との関係。",
+    "constraints": {
+      "head": ["ORG"],
+      "tail": ["PER"]
+    }
+  }
+}

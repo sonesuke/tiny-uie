@@ -1,0 +1,31 @@
+model_name: sbintuitions/modernbert-ja-30m
+max_length: 1024
+train:
+  batch_size: 16
+  grad_accum_steps: 2
+  lr: 1.0e-5
+  epochs: 100
+  warmup_ratio: 0.06
+  fp16: true
+  span_negative_ratio: 5
+loss_weights:
+  span: 1.0
+  type: 1.0
+  rel: 1.0
+inference:
+  thr_start: 0.5
+  thr_end: 0.5
+  max_span_len: 12
+  topk_starts: 20
+  topk_ends: 20
+  nms_iou: 0.5
+  nms_topk: 50
+  type_min: 0.60          # 型スコアの下限
+  min_char_len: 2         # 1文字名以外を優先（句読点や助詞を弾く）
+  max_pair_distance: 30   # head-tail の最大トークン距離
+paths:
+  train: data/train.jsonl
+  dev: data/dev.jsonl
+  ckpt_span: checkpoints/uie_span_only.pt
+  ckpt_type: checkpoints/uie_span_type.pt
+  schema_types: data/schema/types.json

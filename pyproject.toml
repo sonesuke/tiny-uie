@@ -20,7 +20,18 @@ classifiers = [
 ]
 license = { text = "MIT" }
 keywords = []
-dependencies = []
+dependencies = [
+    "accelerate>=0.33",
+    "datasets>=2.21",
+    "numpy>=2.3.3",
+    "protobuf>=6.32.1",
+    "pyyaml>=6.0.2",
+    "rich>=14.1.0",
+    "scikit-learn>=1.7.2",
+    "sentencepiece>=0.2.1",
+    "torch>=2.2",
+    "transformers>=4.43",
+]
 
 [project.urls]
 "Homepage" = "https://github.com/sonesuke/tiny-uie"
@@ -49,6 +60,13 @@ dev = [
     "ruff>=0.11.10",
     "ty>=0.0.1a21",
 ]
+
+[project.scripts]
+train-span = "tiny_uie.train_span:main"
+train-type = "tiny_uie.train_type:main"
+train-rel = "tiny_uie.train_rel:main"
+infer = "tiny_uie.infer:main"
+infer-rel = "tiny_uie.infer_rel:main"
 
 
 [tool.pytest.ini_options]
