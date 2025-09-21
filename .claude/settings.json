@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run ty check:*)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "Bash(uv run ty version:*)",
+      "Bash(uv run ty help:*)",
+      "Bash(make help:*)",
+      "Bash(uv tool install:*)",
+      "Bash(make:*)",
+      "Bash(uv tool list:*)"
+    ],
+    "deny": [],
+    "ask": [],
+    "defaultMode": "bypassPermissions"
+  },
+  "hooks": {
+    "PreToolUse": [{
+      "matcher": "Bash",
+      "hooks": [{
+        "type": "command",
+        "command": "uv run python $CLAUDE_PROJECT_DIR/.claude/hooks/python-hooks.py"
+      }]
+    }]
+  }
+}
