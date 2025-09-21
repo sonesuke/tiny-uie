@@ -1,7 +1,14 @@
+"""Python hooks for Claude Code.
+
+This module contains hooks that intercept and process tool calls to enforce
+project-specific rules and constraints.
+"""
+
 import json
 import re
 import subprocess
 import sys
+
 
 def main() -> None:
     """Main entry point for the hook script.
@@ -21,7 +28,11 @@ def main() -> None:
             # Return JSON response to block the tool use
             response = {
                 'decision': 'block',
-                'message': 'Error: Direct python execution is not allowed in this project.\nPlease use \'uv run python\' instead of \'python\'.\nExample: uv run python script.py'
+                'message': (
+                    'Error: Direct python execution is not allowed in this project. '
+                    'Please use \'uv run python\' instead of \'python\'. '
+                    'Example: uv run python script.py'
+                )
             }
             print(json.dumps(response))
             return 0
